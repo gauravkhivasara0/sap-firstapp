@@ -1,6 +1,8 @@
 using { firstapp as database } from '../db/schema';
 using { firstapp.common as common } from '../db/common';
 
+// adding comment to test temp branch
+
 service CatalogService {
     // Master data (Master context)
     entity BusinessPartnersSrv as projection on database.master.BusinessPartners;
