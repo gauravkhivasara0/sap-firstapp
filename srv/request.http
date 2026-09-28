@@ -1,7 +1,7 @@
 @service_url = http://localhost:4004/odata/v4/catalog
 
 
-### Request for utility variables
+### Utility variables
 {{service_url}}/getUtilities()
 
 
