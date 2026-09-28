@@ -1,0 +1,5 @@
+id,title,description,privacy,upload_date,view,img_path,album_id_id,location_id_id,member_id_id
+1,Sunrise Lake,Golden sunrise over lake,Public,2026-01-10,120,/images/sunrise.jpg,1,1,1
+2,Hill Station,Misty mountain view,Public,2026-01-15,250,/images/hill.jpg,2,2,2
+3,Street Food,Popular local cuisine,Private,2026-01-20,90,/images/food.jpg,3,3,3
+4,City Skyline,Night skyline photography,Public,2026-01-25,180,/images/skyline.jpg,2,4,4

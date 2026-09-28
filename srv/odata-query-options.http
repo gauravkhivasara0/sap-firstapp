@@ -1,0 +1,91 @@
+@practice_url = https://services.odata.org/V4/Northwind/Northwind.svc
+
+
+### Select all category names with their descriptions from the Categories table.
+{{practice_url}}/Categories?$select=CategoryName,Description
+
+
+### Select the contact name, customer id, and company name of all Customers in London
+{{practice_url}}/Customers?$select=CustomerID,CompanyName,ContactName&$filter=City eq 'London'
+
+
+### Marketing managers and sales representatives have asked you to select all
+### available columns in the Suppliers tables that have a FAX number. ne :: not equal
+{{practice_url}}/Suppliers?$filter=Fax ne null
+
+
+### Select a list of customers id’s from the Orders table with required dates
+### between Jan 1, 1997 and Jan 1, 1998 and with freight under 100 units. gt :: greater than, lt :: lesser than
+{{practice_url}}/Orders?$select=CustomerID&$filter=RequiredDate gt 1997-01-01T00:00:00Z and RequiredDate lt 1998-01-01T00:00:00Z
+
+
+### Select a list of company names and contact names of all the Owners from
+### the Customer table from Mexico, Sweden and Germany.
+{{practice_url}}/Customers?$select=CompanyName,ContactName&$filter=ContactTitle eq 'Owner' and (Country eq 'Mexico' or Country eq 'Sweden' or Country eq 'Germany')
+
+
+
+
+
+### 1. Count the number of discontinued products in the Products table.
+{{practice_url}}/Products/$count?$filter=Discontinued eq true
+
+
+### 2. Select a list of category names and descriptions of all categories beginning
+### with 'Co' from the Categories table.
+{{practice_url}}/Categories?$select=CategoryName,Description&$filter=startswith(CategoryName, 'Co')
+
+### 3. Select all the company names, city, country and postal code from the Suppliers table with
+### the word 'rue' in their address. The list should be ordered alphabetically by company name.
+{{practice_url}}/Suppliers?$select=CompanyName,City,Country,PostalCode&$filter=contains(Address, 'rue')
+
+
+### 4. Select the product id and the total quantities ordered for each product id in
+### the Order Details table. TODO
+
+ 
+### 5. Select the customer name and customer address of all customers with
+### orders that shipped using Speedy Express. TODO
+
+
+### 6. Select a list of Suppliers containing company name, contact name, contact
+### title and region description.
+{{practice_url}}/Suppliers?$select=CompanyName,ContactName,ContactTitle,Region
+
+
+### 7. Select all product names from the Products table that are condiments.
+{{practice_url}}/Products?$select=ProductName&$filter=Category/CategoryName eq 'Condiments'
+
+
+### 8. Select a list of customer names who have no orders in the Orders table.
+{{practice_url}}/Customers?$select=CompanyName&$filter=not Orders/any()
+ 
+ 
+### 9. Select a complete list of company names from the Shippers table. Include freight totals rounded to
+### the nearest whole number for each shipper from the Orders table for those shippers with orders. TODO
+{{practice_url}}/
+
+
+### 10. Select all employee first and last names from the Employees table by combining the 2 
+### columns aliased as 'DisplayName'. The combined format should be 'LastName, FirstName'. TODO
+
+
+### 11. Select a list of products from the Products table along with the total units in
+### stock for each product. Give the computed column a name using the alias,
+### 'TotalUnits'. Include only products with TotalUnits greater than 100. TODO
+
+
+### 12. Select the name, address, city, and region of employees.
+{{practice_url}}/Employees?$select=FirstName,LastName,Address,City,Region
+
+ 
+### 13. Select the name, address, city, and region of employees living in USA
+{{practice_url}}/Employees?$select=FirstName,LastName,Address,City,Region&$filter=Country eq 'USA'
+
+
+### 14. Select the name, address, city, and region of employees older than 50 years old.
+{{practice_url}}/Employees?$select=FirstName,LastName,Address,City,Region&$filter=BirthDate lt 1976-09-24T00:00:00Z
+
+
+### 15. Select the title and name of employees who have sold at least one of the
+### products ‘Gravad Lax’ or ‘Mishi Kobe Niku’. TODO

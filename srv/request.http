@@ -1,0 +1,140 @@
+@service_url = http://localhost:4004/odata/v4/catalog
+
+
+### Request for utility variables
+{{service_url}}/getUtilities()
+
+
+### Get top 20 highest paid employees
+{{service_url}}/EmployeesSrv/02BD2137-0890-1EEA-A6C2-BB55C198E7FB/getTopHighestPaid()
+
+
+### Increment Employee Salary by 15%
+POST {{service_url}}/EmployeesSrv/02BD2137-0890-1EEA-A6C2-BB55C198E7FB/incrementSalary
+
+
+###
+{{service_url}}/PurchaseOrdersSrv/74867AD200E41EDBA5D8B0C98DC28052/largestOrder()
+
+
+###
+POST {{service_url}}/PurchaseOrdersSrv/74867AD200E41EDBA5D8B0C98DC2A052/discountPrice
+
+
+###
+POST {{service_url}}/EmployeesSrv
+Content-Type: application/json
+
+{
+    "nameFirst": "Test for readonly"
+}
+
+
+###
+{{service_url}}/getHighestPricedProduct()
+
+
+###
+{{service_url}}/getHighestSalariedEmployees()
+
+
+###
+PUT {{service_url}}/ProductsSrv/74867AD200E41EDBA5D8B06B26EB4052
+Content-Type: application/json
+
+{
+    "PRICE": "5000.01"
+}
+
+### 1. Purchase Item gross amt > 15k usd or 10k eu => pls get in touch with your line manager or pls check with your regional head
+PUT {{service_url}}/PurchaseItemsSrv/74867AD200E41EDBA5D8B0CBD35A0052
+Content-Type: application/json
+
+{
+    "GROSS_AMOUNT": "1500000",
+    "CURRENCY_code": "USD"
+}
+
+
+### 2. Country in Address should be 'US' or 'GB' else => pls contact your administrator
+PUT {{service_url}}/AddressesSrv/74867AD200E41EDBA5D8B06885664052
+Content-Type: application/json
+
+{
+    "COUNTRY": "IN"
+}
+
+
+### 3. Employee.mobileNumber allow only 'US' and 'GB' Country codes => Unable to update the mobile numbers
+PUT {{service_url}}/EmployeesSrv/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+
+{
+    "phoneNumber": "+91 99237 99911"
+}
+
+
+### 4. BusinessPartners.CompanyName should not contain special chars like ',.-' => Invalid company name
+PUT {{service_url}}/BusinessPartnersSrv/74867AD200E41EDBA5D8B06885A56052
+Content-Type: application/json
+
+{
+    "COMPANY_NAME": "Test-Company"
+}
+
+
+### 5. poItems.position should be a multiples of 10
+PUT {{service_url}}/PurchaseItemsSrv/74867AD200E41EDBA5D8B0CBD35A0052
+Content-Type: application/json
+
+{
+    "PO_ITEM_POS": "12"
+}
+
+
+###
+PUT {{service_url}}/EmployeesSrv/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+Content-Type: application/json
+
+{
+    "salaryAmount": "108000.00"
+}
+
+
+### All employees
+{{service_url}}/EmployeesSrv
+
+
+### Count number of employees
+{{service_url}}/EmployeesSrv/$count
+
+
+### Top 10 Products
+{{service_url}}/ProductsSrv?$top=10
+
+
+### Next 10 Products after the top 10 products
+{{service_url}}/ProductsSrv?$top=10&$skip=10
+
+
+### Filter based on columns, eq :: equal to
+{{service_url}}/ProductsSrv?$filter=CATEGORY eq 'Notebooks' &DIM_UNIT eq 'CM'
+
+### Select only specifies columns
+{{service_url}}/ProductsSrv?$select=PRODUCT_ID,DESCRIPTION,CATEGORY,PRICE
+
+
+### Order by column
+{{service_url}}/ProductsSrv?$orderby=PRODUCT_ID desc
+
+
+### Get context of specified Primary Key row
+{{service_url}}/ProductsSrv('74867AD200E41EDBA5D8B06B26F8C052')/PRODUCT_ID
+
+
+### Get value from the context of the specified Primary Key row
+{{service_url}}/ProductsSrv('74867AD200E41EDBA5D8B06B26F8C052')/PRODUCT_ID/$value
+
+
+### Works as join to fetch all the children data instead of the classic N + 1 queries bottleneck
+{{service_url}}/PurchaseOrdersSrv?$top=10&$expand=Items

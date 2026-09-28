@@ -1,0 +1,6 @@
+bookId,bookName,author,price,stock,dateOfIssue,dateOfReturn,stuId_stuId
+1001,Mathematics Vol-1,RD Sharma,450.00,20,2026-01-10T10:00:00,2026-01-25T10:00:00,1
+1002,Science Today,NCERT,350.00,15,2026-01-12T10:00:00,2026-01-27T10:00:00,1
+1003,English Grammar,Wren Martin,300.00,12,2026-01-15T10:00:00,2026-01-30T10:00:00,2
+1004,History of India,Bipan Chandra,500.00,8,2026-01-20T10:00:00,2026-02-05T10:00:00,3
+1005,Computer Basics,PK Sinha,600.00,10,2026-01-22T10:00:00,2026-02-07T10:00:00,5
