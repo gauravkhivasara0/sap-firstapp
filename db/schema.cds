@@ -8,120 +8,120 @@
 // type str20 : String(20);
 
 // entity Students : common.Address, common.feeasp, managed, temporal {
-// 	key stuId: Integer;
-// 	stuName: common.str50;
-// 	gender: common.gender;
-// 	fatherName: common.str50;
-// 	motherName: common.str50;
-// 	contactNo: common.PhoneNumber;
-// 	email: common.Email;
+// 	key stuId : Integer;
+// 	stuName : common.str50;
+// 	gender : common.gender;
+// 	fatherName : common.str50;
+// 	motherName : common.str50;
+// 	contactNo : common.PhoneNumber;
+// 	email : common.Email;
 
-// 	abc: Association to one Classes;
+// 	abc : Association to one Classes;
 // 	// Unmanaged association
-// 	book: Association to many Books on book.stuId = $self;
+// 	book : Association to many Books on book.stuId = $self;
 // }
 
 // entity Classes : managed, temporal {
-// 	key classId: Integer;
-// 	className: common.str50;
-// 	teacherName: common.str50;
+// 	key classId : Integer;
+// 	className : common.str50;
+// 	teacherName : common.str50;
 // }
 
-// entity Employees {
-// 	key empId: Integer;
-// 	empName: common.str50;
-// 	salary: str20;
-// 	dept: str20;
-// 	currencyCode: String(30);
-// 	city: str20;
-// 	country: str20;
-// 	division: Association to one Divisions;
+// entity Employees  {
+// 	key empId : Integer;
+// 	empName : common.str50;
+// 	salary : str20;
+// 	dept : str20;
+// 	currencyCode : String(30);
+// 	city : str20;
+// 	country : str20;
+// 	division : Association to one Divisions;
 // }
 
-// entity Divisions {
-// 	key divId: Integer;
-// 	divName: str20;
-// 	city: str20;
-// 	country: str20;
+// entity Divisions  {
+// 	key divId : Integer;
+// 	divName : str20;
+// 	city : str20;
+// 	country : str20;
 // }
 
-// entity Books {
-// 	key bookId: Integer;
-// 	bookName: common.str50;
-// 	author: common.str50;
-// 	price: Decimal;
-// 	stock: Integer;
-// 	status: common.status;
-// 	dateOfIssue: DateTime;
-// 	dateOfReturn: DateTime;
+// entity Books  {
+// 	key bookId : Integer;
+// 	bookName : common.str50;
+// 	author : common.str50;
+// 	price : Decimal;
+// 	stock : Integer;
+// 	status : common.status;
+// 	dateOfIssue : DateTime;
+// 	dateOfReturn : DateTime;
 
-// 	stuId: Association to one Students;
+// 	stuId : Association to one Students;
 // }
 
-// entity Marks {
-// 	subj: str20;
-// 	marks: Integer;
-// 	totMarks: Integer;
-// 	percentage: Decimal;
+// entity Marks  {
+// 	subj : str20;
+// 	marks : Integer;
+// 	totMarks : Integer;
+// 	percentage : Decimal;
 
-// 	stuId: Association to one Students;
+// 	stuId : Association to one Students;
 // }
 
 
 
-// entity Albums {
-// 	key id: Integer;
-// 	title: String(120) not null;
-// 	description: String(255) not null;
-// 	view: Integer not null;
+// entity Albums  {
+// 	key id : Integer;
+// 	title : String(120) not null;
+// 	description : String(255) not null;
+// 	view : Integer not null;
 // }
 
-// entity Tags {
-// 	key id: Integer;
-// 	title: String(120) not null;
+// entity Tags  {
+// 	key id : Integer;
+// 	title : String(120) not null;
 // }
 
-// entity TagPhotos {
-// 	key id: Integer;
+// entity TagPhotos  {
+// 	key id : Integer;
 
-// 	tag_id: Association to one Tags;
-// 	photo_id: Association to one Photos;
+// 	tag_id : Association to one Tags;
+// 	photo_id : Association to one Photos;
 // }
 
-// entity Locations {
-// 	key id: Integer;
-// 	name: String(200) not null;
-// 	short_name: String(50) not null;
+// entity Locations  {
+// 	key id : Integer;
+// 	name : String(200) not null;
+// 	short_name : String(50) not null;
 // }
 
-// entity Photos {
-// 	key id: Integer;
-// 	title: String(120) not null;
-// 	description: String(255) not null;
-// 	privacy: String(20) not null;
-// 	upload_date: Date not null;
-// 	view: Integer not null;
-// 	img_path: String(50) not null;
+// entity Photos  {
+// 	key id : Integer;
+// 	title : String(120) not null;
+// 	description : String(255) not null;
+// 	privacy : String(20) not null;
+// 	upload_date : Date not null;
+// 	view : Integer not null;
+// 	img_path : String(50) not null;
 
-// 	album_id: Association to one Albums;
-// 	location_id: Association to one Locations;
-// 	member_id: Association to one Members;
+// 	album_id : Association to one Albums;
+// 	location_id : Association to one Locations;
+// 	member_id : Association to one Members;
 // }
 
-// entity Comments {
-// 	key id: Integer;
-// 	post_date: Date not null;
-// 	content: String(255) not null;
+// entity Comments  {
+// 	key id : Integer;
+// 	post_date : Date not null;
+// 	content : String(255) not null;
 	
-// 	photo_id: Association to one Photos;
+// 	photo_id : Association to one Photos;
 // }
 
-// entity Members {
-// 	key id: Integer;
-// 	name: String(255) not null;
-// 	phone_number: String(20) not null;
-// 	email: String(200) not null;
-// 	address: String(255) not null;
+// entity Members  {
+// 	key id : Integer;
+// 	name : String(255) not null;
+// 	phone_number : String(20) not null;
+// 	email : String(200) not null;
+// 	address : String(255) not null;
 // }
 
 namespace firstapp;
@@ -131,45 +131,45 @@ using {firstapp.common as common} from './common';
 
 context master {
     entity BusinessPartners {
-        key NODE_KEY: common.Guid;
-            BP_ROLE: common.Role;
-            EMAIL: common.Email;
-            MOBILE: common.PhoneNumber;
-            FAX: common.String32;
-            WEB: common.String255;
-            BP_ID: common.Guid;
-            COMPANY_NAME: common.String255;
+        key NODE_KEY : common.Guid @(title : '{i18n>NODE_KEY}');
+            BP_ROLE : common.Role @(title : '{i18n>BP_ROLE}');
+            EMAIL : common.Email @(title : '{i18n>EMAIL}');
+            MOBILE : common.PhoneNumber @(title : '{i18n>MOBILE}');
+            FAX : common.String32 @(title : '{i18n>FAX}');
+            WEB : common.String255 @(title : '{i18n>WEB}');
+            BP_ID : common.Guid @(title : '{i18n>BP_ID}');
+            COMPANY_NAME : common.String255 @(title : '{i18n>COMPANY_NAME}');
             // Managed Association
-            AD: Association to Addresses;
+            AD : Association to Addresses;
     }
 
     entity Addresses : common.Address {
-        key NODE_KEY : common.Guid;
-            ADDRESS_TYPE : common.String32;
-            VAL_START : Date;
-            VAL_END : Date;
-            LATITUDE : Decimal(9, 6);
-            LONGITUDE : Decimal(9, 6);
+        key NODE_KEY : common.Guid @(title : '{i18n>NODE_KEY}');
+            ADDRESS_TYPE : common.String32 @(title : '{i18n>ADDRESS_TYPE}');
+            VAL_START : Date @(title : '{i18n>VAL_START}');
+            VAL_END : Date @(title : '{i18n>VAL_END}');
+            LATITUDE : Decimal(9, 6) @(title : '{i18n>LATITUDE}');
+            LONGITUDE : Decimal(9, 6) @(title : '{i18n>LONGITUDE}');
             // Back-link Association
             BP : Association to one BusinessPartners on BP.AD = $self;
     }
 
     entity Products {
-        key NODE_KEY : common.Guid;
-            PRODUCT_ID : common.String32;
-            TYPE_CODE : String(2);
-            CATEGORY : common.String32;
-            DESCRIPTION : common.String255;
-            TAX_TARIF_CODE : Integer;
-            MEASURE_UNIT : String(2);
-            WEIGHT_MEASURE : Decimal(5, 2);
-            WEIGHT_UNIT : String(2);
-            PRICE : Decimal(15, 2);
-            CURRENCY_CODE : String(5);
-            WIDTH : Decimal(5, 2);
-            DEPTH : Decimal(5, 2);
-            HEIGHT : Decimal(5, 2);
-            DIM_UNIT : String(2);
+        key NODE_KEY : common.Guid @(title : '{i18n>NODE_KEY}');
+            PRODUCT_ID : common.String32 @(title : '{i18n>PRODUCT_ID}');
+            TYPE_CODE : String(2) @(title : '{i18n>TYPE_CODE}');
+            CATEGORY : common.String32 @(title : '{i18n>CATEGORY}');
+            DESCRIPTION : common.String255 @(title : '{i18n>DESCRIPTION}');
+            TAX_TARIF_CODE : Integer @(title : '{i18n>TAX_TARIF_CODE}');
+            MEASURE_UNIT : String(2) @(title : '{i18n>MEASURE_UNIT}');
+            WEIGHT_MEASURE : Decimal(5, 2) @(title : '{i18n>WEIGHT_MEASURE}');
+            WEIGHT_UNIT : String(2) @(title : '{i18n>WEIGHT_UNIT}');
+            PRICE : Decimal(15, 2) @(title : '{i18n>PRICE}');
+            CURRENCY_CODE : String(5) @(title : '{i18n>CURRENCY_CODE}');
+            WIDTH : Decimal(5, 2) @(title : '{i18n>WIDTH}');
+            DEPTH : Decimal(5, 2) @(title : '{i18n>DEPTH}');
+            HEIGHT : Decimal(5, 2) @(title : '{i18n>HEIGHT}');
+            DIM_UNIT : String(2) @(title : '{i18n>DIM_UNIT}');
             // Supplier Business Partner
             SUPPLIERS : Association to BusinessPartners;
     }
@@ -194,12 +194,12 @@ context master {
 
 context transaction {
     entity PurchaseOrders : common.Amount {
-        key NODE_KEY : common.Guid;
-            PO_ID : common.Guid;
+        key NODE_KEY : common.Guid @(title : '{i18n>NODE_KEY}');
+            PO_ID : common.Guid @(title : '{i18n>PO_ID}');
             // Managed Association
             PARTNER : Association to master.BusinessPartners;
-            LIFECYCLE_STATUS : String(1);
-            OVERALL_STATUS : String(1);
+            LIFECYCLE_STATUS : String(1) @(title : '{i18n>LIFECYCLE_STATUS}');
+            OVERALL_STATUS : String(1) @(title : '{i18n>OVERALL_STATUS}');
             // Unmanaged Association
             Items : Association to many PurchaseItems on Items.PARENT = $self;
     }
@@ -212,4 +212,9 @@ context transaction {
             // Product Reference
             PRODUCT : Association to master.Products;
     }
+}
+
+entity Countries  {
+    code : String(2);
+    description : String(200);
 }

@@ -22,7 +22,31 @@ service CatalogService {
 
     // Transactional data (Transaction context)
     entity PurchaseOrdersSrv as projection on database.transaction.PurchaseOrders {
-        *
+        *,
+        case LIFECYCLE_STATUS
+            when 'N' then 'Not started'
+            when 'S' then 'Started'
+            when 'C' then 'Completed'
+            else 'Cancelled'
+            end as LSTEXT : String(20) @(title: '{i18n>LIFECYCLE_STATUS}'),
+        case OVERALL_STATUS
+            when 'R' then 'Returned'
+            when 'P' then 'Processed'
+            when 'D' then 'Delievered'
+            else 'New'
+            end as OSTEXT : String(20) @(title: '{i18n>OVERALL_STATUS}'),
+        case LIFECYCLE_STATUS
+            when 'N' then 2
+            when 'S' then 3
+            when 'C' then 3
+            else 1
+            end as LSC : Integer,
+        case OVERALL_STATUS
+            when 'R' then 1
+            when 'P' then 3
+            when 'D' then 3
+            else 2
+            end as OSC : Integer
     } actions {
         // Instance bound actions
         action discountPrice() returns array of PurchaseOrdersSrv;
