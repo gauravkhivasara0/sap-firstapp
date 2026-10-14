@@ -107,9 +107,10 @@ using CatalogService as service from '../../srv/cat-service';
 annotate service.PurchaseOrdersSrv with @(
     UI.SelectionFields : [
         PO_ID,
-        PARTNER.COMPANY_NAME,
+        COMPANY_NAME,
         GROSS_AMOUNT,
-        PARTNER.AD.COUNTRY
+        PARTNER,
+        partnerCountryDesc
     ],
     UI.LineItem : [
         {
@@ -117,8 +118,13 @@ annotate service.PurchaseOrdersSrv with @(
             Value : PO_ID
         },
         {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'CatalogService.EntityContainer/createEmployee',
+            Label : 'Create Employee'
+        },
+        {
             $Type : 'UI.DataField',
-            Value : PARTNER.COMPANY_NAME
+            Value : COMPANY_NAME
         },
         {
             $Type : 'UI.DataField',
@@ -129,12 +135,10 @@ annotate service.PurchaseOrdersSrv with @(
             Value : CURRENCY_code
         },
         {
-            $Type : 'UI.DataField',
-            Value : NET_AMOUNT
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : TAX_AMOUNT
+            $Type : 'UI.DataFieldForAction',
+            Action : 'CatalogService.discountPrice',
+            Label : 'Discount',
+            Inline : true
         },
         {
             $Type : 'UI.DataField',
@@ -148,7 +152,7 @@ annotate service.PurchaseOrdersSrv with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : PARTNER.AD.COUNTRY
+            Value : partnerCountryDesc
         }
     ]
 );

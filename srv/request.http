@@ -18,10 +18,10 @@ POST {{service_url}}/EmployeesSrv/02BD2137-0890-1EEA-A6C2-BB55C198E7FB/increment
 
 
 ###
-POST {{service_url}}/PurchaseOrdersSrv/74867AD200E41EDBA5D8B0C98DC2A052/discountPrice
+POST {{service_url}}/PurchaseOrdersSrv(74867AD200E41EDBA5D8B0C98DC2A052)/CatalogService.discountPrice
 
 
-###
+### Read only annotation
 POST {{service_url}}/EmployeesSrv
 Content-Type: application/json
 

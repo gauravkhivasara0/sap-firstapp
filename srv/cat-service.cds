@@ -21,39 +21,73 @@ service CatalogService {
     };
 
     // Transactional data (Transaction context)
-    entity PurchaseOrdersSrv as projection on database.transaction.PurchaseOrders {
-        *,
+    entity PurchaseOrdersSrv as 
+        select from database.transaction.PurchaseOrders as po
+        inner join database.master.BusinessPartners as bp on bp.NODE_KEY = po.PARTNER.NODE_KEY
+        inner join database.master.Addresses as ad on ad.NODE_KEY = bp.AD.NODE_KEY
+        inner join database.Countries as country on ad.COUNTRY = country.code
+    {
+        key po.NODE_KEY,
+        po.PO_ID,
+        po.GROSS_AMOUNT,
+        po.NET_AMOUNT,
+        po.TAX_AMOUNT,
+        po.CURRENCY,
+        bp.COMPANY_NAME,
+        bp.BP_ID,
+        bp.BP_ROLE,
+        bp.MOBILE,
+        bp.FAX,
+        bp.EMAIL,
+        bp.WEB,
+        ad.ADDRESS_TYPE,
+        ad.BUILDING,
+        ad.CITY,
+        ad.COUNTRY,
+        ad.LATITUDE,
+        ad.LONGITUDE,
+        ad.STREET,
+        ad.POSTAL_CODE,
+        po.Items,
+        bp.COMPANY_NAME as partnerName,
+        bp.BP_ID as partnerID,
+        ad.COUNTRY as partnerCountry,
+        country.description as partnerCountryDesc @(title : '{i18n>COUNTRY}'),
         case LIFECYCLE_STATUS
             when 'N' then 'Not started'
             when 'S' then 'Started'
             when 'C' then 'Completed'
             else 'Cancelled'
-            end as LSTEXT : String(20) @(title: '{i18n>LIFECYCLE_STATUS}'),
+        end as LSTEXT : String(20) @(title: '{i18n>LIFECYCLE_STATUS}'),
         case OVERALL_STATUS
             when 'R' then 'Returned'
             when 'P' then 'Processed'
             when 'D' then 'Delievered'
             else 'New'
-            end as OSTEXT : String(20) @(title: '{i18n>OVERALL_STATUS}'),
+        end as OSTEXT : String(20) @(title: '{i18n>OVERALL_STATUS}'),
         case LIFECYCLE_STATUS
             when 'N' then 2
             when 'S' then 3
             when 'C' then 3
             else 1
-            end as LSC : Integer,
+        end as LSC : Integer,
         case OVERALL_STATUS
             when 'R' then 1
             when 'P' then 3
             when 'D' then 3
             else 2
-            end as OSC : Integer
+        end as OSC : Integer
     } actions {
         // Instance bound actions
+        // DB ops won't work on a view
         action discountPrice() returns array of PurchaseOrdersSrv;
 
         // Instance bound function
         function largestOrder() returns array of PurchaseOrdersSrv;
     };
+
+    // Added as DB ops won't work on views
+    // action discountPrice() returns array of PurchaseOrdersSrv;
 
     entity PurchaseItemsSrv as projection on database.transaction.PurchaseItems;
     
@@ -65,21 +99,20 @@ service CatalogService {
     function getHighestSalariedEmployees() returns array of EmployeesSrv;
 
     action createEmployee(
-        ID: UUID,
-        nameFirst: common.String64,
-        nameLast: common.String64,
-        nameMiddle: common.String64,
-        nameInitials: common.String64,
-        gender: common.Gender,
-        language: String(2),
-        loginName: String(16),
-        phoneNumber: common.PhoneNumber,
-        email: common.Email,
-        Currency_code: String(3),
-        salaryAmount: common.AmountT,
-        accountNumber: common.String32,
-        bankId: String(16),
-        bankName: common.String64
+        nameFirst: common.String64 @(title : '{i18n>EMP_FIRST_NAME}'),
+        nameLast: common.String64 @(title : '{i18n>EMP_LAST_NAME}'),
+        nameMiddle: common.String64 @(title : '{i18n>EMP_MIDDLE_NAME}'),
+        nameInitials: common.String64 @(title : '{i18n>EMP_INITIALS}'),
+        gender: common.Gender @(title : '{i18n>EMP_GENDER}'),
+        language: String(2) @(title : '{i18n>EMP_LANG}'),
+        loginName: String(16) @(title : '{i18n>EMP_LOGIN_NAME}'),
+        phoneNumber: common.PhoneNumber @(title : '{i18n>EMP_PHONE_NUM}'),
+        email: common.Email @(title : '{i18n>EMP_EMAIL}'),
+        Currency_code: String(3) @(title : '{i18n>CURRENCY_CODE}'),
+        salaryAmount: common.AmountT @(title : '{i18n>EMP_SALARY_AMOUNT}'),
+        accountNumber: common.String32 @(title : '{i18n>EMP_ACC_NUM}'),
+        bankId: String(16) @(title : '{i18n>EMP_BANK_ID}'),
+        bankName: common.String64 @(title : '{i18n>EMP_BANK_NAME}')
     ) returns array of EmployeesSrv;
 
     action createAddress(
